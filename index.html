@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Password Generator dan Manager sederhana dengan penyimpanan terenkripsi di browser."
+    />
+    <title>Password Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Ringkasan vault">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">PS</div>
+          <div>
+            <p class="eyebrow">Local vault</p>
+            <h1>Password Studio</h1>
+          </div>
+        </div>
+
+        <div class="stat-grid">
+          <section class="stat-card">
+            <span class="stat-label">Tersimpan</span>
+            <strong id="savedCount">0</strong>
+          </section>
+          <section class="stat-card">
+            <span class="stat-label">Panjang</span>
+            <strong id="lengthBadge">16</strong>
+          </section>
+        </div>
+
+        <section class="note-panel">
+          <h2>Catatan</h2>
+          <p>
+            Data disimpan di browser perangkat ini dan dienkripsi menggunakan
+            kunci yang kamu isi saat menyimpan.
+          </p>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Generator & manager</p>
+            <h2>Password Generator</h2>
+          </div>
+          <button class="ghost-button" id="clearAllBtn" type="button">
+            Hapus Semua
+          </button>
+        </header>
+
+        <section class="generator-panel" aria-labelledby="generatorTitle">
+          <div class="section-title">
+            <h3 id="generatorTitle">Buat password baru</h3>
+            <span id="strengthLabel" class="pill">Kuat</span>
+          </div>
+
+          <div class="password-output">
+            <input
+              id="generatedPassword"
+              type="text"
+              value=""
+              readonly
+              aria-label="Password yang dibuat"
+            />
+            <button id="copyGeneratedBtn" class="icon-button" type="button" title="Salin password">
+              Copy
+            </button>
+          </div>
+
+          <div class="controls">
+            <label class="control-row" for="passwordLength">
+              <span>Panjang password</span>
+              <input id="passwordLength" type="range" min="8" max="32" value="16" />
+            </label>
+
+            <div class="toggle-grid" aria-label="Opsi karakter">
+              <label><input id="useUppercase" type="checkbox" checked /> Huruf besar</label>
+              <label><input id="useLowercase" type="checkbox" checked /> Huruf kecil</label>
+              <label><input id="useNumbers" type="checkbox" checked /> Angka</label>
+              <label><input id="useSymbols" type="checkbox" checked /> Simbol</label>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Nama akun
+              <input id="accountName" type="text" placeholder="contoh: Email kantor" />
+            </label>
+            <label>
+              Website / username
+              <input id="accountMeta" type="text" placeholder="contoh: user@mail.com" />
+            </label>
+            <label class="wide-field">
+              Kunci enkripsi
+              <input
+                id="encryptionKey"
+                type="password"
+                placeholder="Kunci untuk simpan dan buka password"
+                autocomplete="off"
+              />
+            </label>
+          </div>
+
+          <div class="action-row">
+            <button id="generateBtn" class="secondary-button" type="button">Generate</button>
+            <button id="saveBtn" class="primary-button" type="button">Simpan Password</button>
+          </div>
+          <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="vault-panel" aria-labelledby="vaultTitle">
+          <div class="section-title">
+            <h3 id="vaultTitle">Password tersimpan</h3>
+            <button id="unlockAllBtn" class="text-button" type="button">Buka daftar</button>
+          </div>
+
+          <div id="emptyState" class="empty-state">
+            <h4>Belum ada password</h4>
+            <p>Buat password, isi detail akun, lalu simpan ke vault lokal.</p>
+          </div>
+
+          <div id="passwordList" class="password-list" aria-live="polite"></div>
+        </section>
+      </section>
+    </main>
+
+    <template id="passwordItemTemplate">
+      <article class="password-item">
+        <div class="item-main">
+          <h4 class="item-title"></h4>
+          <p class="item-meta"></p>
+          <input class="item-password" type="password" readonly />
+        </div>
+        <div class="item-actions">
+          <button class="small-button reveal-btn" type="button">Buka</button>
+          <button class="small-button copy-btn" type="button">Salin</button>
+          <button class="danger-button delete-btn" type="button">Hapus</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,508 @@
+:root {
+  --bg: #f7f6f3;
+  --surface: #ffffff;
+  --surface-soft: #fbfaf8;
+  --text: #232323;
+  --muted: #6f6a61;
+  --line: #dfddd7;
+  --line-strong: #cbc7bf;
+  --accent: #2f6f63;
+  --accent-dark: #25584f;
+  --accent-soft: #e8f1ee;
+  --danger: #b4473c;
+  --danger-soft: #f8e9e6;
+  --shadow: 0 18px 50px rgba(30, 27, 22, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(90deg, rgba(223, 221, 215, 0.45) 1px, transparent 1px),
+    linear-gradient(rgba(223, 221, 215, 0.45) 1px, transparent 1px),
+    var(--bg);
+  background-size: 40px 40px;
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 28px;
+  width: min(1180px, calc(100% - 32px));
+  margin: 32px auto;
+}
+
+.sidebar,
+.generator-panel,
+.vault-panel {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.sidebar {
+  position: sticky;
+  top: 32px;
+  align-self: start;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.brand h1,
+.topbar h2,
+.section-title h3,
+.note-panel h2,
+.empty-state h4,
+.item-title {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.brand h1 {
+  font-size: 21px;
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.stat-card,
+.note-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.stat-card {
+  padding: 16px;
+}
+
+.stat-label {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.stat-card strong {
+  font-size: 28px;
+}
+
+.note-panel {
+  padding: 18px;
+}
+
+.note-panel h2 {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.note-panel p,
+.empty-state p,
+.item-meta,
+.feedback {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.note-panel p,
+.empty-state p,
+.feedback {
+  margin: 0;
+  font-size: 14px;
+}
+
+.workspace {
+  display: grid;
+  gap: 18px;
+}
+
+.topbar,
+.section-title,
+.action-row,
+.item-actions {
+  display: flex;
+  align-items: center;
+}
+
+.topbar,
+.section-title {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.topbar h2 {
+  font-size: clamp(30px, 5vw, 54px);
+  line-height: 1;
+}
+
+.generator-panel,
+.vault-panel {
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.section-title {
+  margin-bottom: 18px;
+}
+
+.section-title h3 {
+  font-size: 18px;
+}
+
+.pill {
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 12px;
+}
+
+.password-output {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 11px 13px;
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+#generatedPassword {
+  min-height: 58px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.controls {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  margin-bottom: 18px;
+}
+
+.control-row {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.toggle-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.toggle-grid label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  padding: 10px 12px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.form-grid label {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.form-grid input {
+  margin-top: 7px;
+}
+
+.wide-field {
+  grid-column: 1 / -1;
+}
+
+.action-row {
+  justify-content: flex-end;
+  gap: 10px;
+  margin: 18px 0 10px;
+}
+
+.primary-button,
+.secondary-button,
+.ghost-button,
+.icon-button,
+.small-button,
+.danger-button,
+.text-button {
+  min-height: 42px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.ghost-button:hover,
+.icon-button:hover,
+.small-button:hover,
+.danger-button:hover,
+.text-button:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button {
+  background: var(--accent);
+  color: #ffffff;
+  padding: 0 18px;
+}
+
+.primary-button:hover {
+  background: var(--accent-dark);
+}
+
+.secondary-button,
+.ghost-button,
+.icon-button,
+.small-button,
+.text-button {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.secondary-button,
+.ghost-button,
+.icon-button,
+.small-button,
+.danger-button {
+  padding: 0 14px;
+}
+
+.text-button {
+  min-height: 36px;
+  padding: 0 12px;
+  color: var(--accent-dark);
+}
+
+.danger-button {
+  background: var(--danger-soft);
+  border-color: #ecc5bf;
+  color: var(--danger);
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  min-height: 180px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  text-align: center;
+  padding: 24px;
+}
+
+.empty-state h4 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.password-list {
+  display: grid;
+  gap: 12px;
+}
+
+.password-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  padding: 16px;
+}
+
+.item-title {
+  font-size: 16px;
+}
+
+.item-meta {
+  margin: 4px 0 10px;
+  font-size: 13px;
+}
+
+.item-password {
+  max-width: 420px;
+}
+
+.item-actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.small-button,
+.danger-button {
+  min-width: 74px;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 920px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .toggle-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .app-shell {
+    width: min(100% - 20px, 1180px);
+    margin: 16px auto;
+    gap: 16px;
+  }
+
+  .sidebar,
+  .generator-panel,
+  .vault-panel {
+    padding: 18px;
+  }
+
+  .topbar,
+  .section-title,
+  .password-item,
+  .action-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .topbar {
+    display: flex;
+  }
+
+  .topbar h2 {
+    font-size: 36px;
+  }
+
+  .password-output,
+  .form-grid,
+  .password-item,
+  .control-row {
+    grid-template-columns: 1fr;
+  }
+
+  .toggle-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .item-actions,
+  .action-row {
+    justify-content: stretch;
+  }
+
+  .item-actions > *,
+  .action-row > *,
+  .ghost-button,
+  .icon-button {
+    width: 100%;
+  }
+}
